@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
     <p class="error"></p>
   
 
-    <form method="get" action="/menu">
+    <form method="get" action="/search">
         <div class="home_search">
           <input type="text" size="25" placeholder="店名" name="key">
           <input type="submit" value="&#xf002" >
@@ -33,19 +34,19 @@
             <div class="order">
     
               <select class="base-text" name="category" >
-                <option>カテゴリ</option>
-                <option value="dining">沖縄食堂</option>
-                <option value="izakaya">沖縄居酒場</option>
-                <option value="steak">ステーキ</option>
-                <option value="tacos">タコス・タコライス</option>
-                <option value="soba">沖縄そば</option>
-                <option value="sweets">沖縄スイーツ</option>
+                <option>ジャンル</option>
+                <option value="沖縄食堂">沖縄食堂</option>
+                <option value="沖縄居酒場">沖縄居酒場</option>
+                <option value="ステーキ">ステーキ</option>
+                <option value="タコス・タコライス">タコス・タコライス</option>
+                <option value="沖縄そば">沖縄そば</option>
+                <option value="沖縄スイーツ">沖縄スイーツ</option>
               </select>         
               <select class="base-text" name="area" >
                 <option>エリア</option>
-                <option value="id">北部</option>
-                <option value="category">中部</option>
-                <option value="lowprice">南部</option>
+                <option value="北部">北部</option>
+                <option value="中部">中部</option>
+                <option value="南部">南部</option>
               </select>         
             </div>
           </div>
@@ -53,13 +54,30 @@
   </div>
 </div>
 
+<h3>${count}件見つかりました。</h3>
+   <c:forEach var="shop" items="${list}">
 
-
-  <!-- <c:forEach var="car" items="${historyList}">
-        <tr>
-          <td>${car.getBodyColor()}</td>
-        </tr>
+        <table>
+  <tr>
+    <th>会社名</th>
+    <td>${shop.getShopName()}</td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td>${shop.getCategory()}</td>
+  </tr>
+  <tr>
+    <th>エリア</th>
+    <td>${shop.getArea()}</td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td>${shop.getTelnumber()}</td>
+  </tr>
+</table>
       </c:forEach>
--->  
+
+
+
 </body>
 </html>
