@@ -17,7 +17,7 @@
     
    </div>
    <div class="head">
-    <a href="" class="button">ログアウト</a>
+    <a href="/index" class="button">ログアウト</a>
     <p class="name">${Username}さんこんにちは</p>
     <h2 class="">ぐるなび沖縄版</h2>
     
@@ -54,14 +54,14 @@
   </div>
 </div>
 
-<h3>${count}件見つかりました。</h3>
    <c:forEach var="shop" items="${list}">
 
         <table>
+        
   <tr>
     <th>会社名</th>
-    <td>${shop.getShopName()}</td>
-  </tr>
+    <td>${shop.getShopName()} </td>
+ </tr>
   <tr>
     <th>ジャンル</th>
     <td>${shop.getCategory()}</td>
@@ -74,7 +74,13 @@
     <th>電話番号</th>
     <td>${shop.getTelnumber()}</td>
   </tr>
+  <tr>
+  <th></th>
+       <td><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗詳細</a></td>
+  </tr>
+  
 </table>
+
       </c:forEach>
 
 

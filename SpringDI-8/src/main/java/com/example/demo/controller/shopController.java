@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.controller.entity.Shop;
 import com.example.demo.controller.entity.User;
 import com.example.demo.controller.form.loginForm;
+import com.example.demo.controller.form.shopForm;
 import com.example.demo.controller.service.ShopServices;
 import com.example.demo.controller.service.UserServices;
 
@@ -50,6 +51,7 @@ public class shopController {
 			list = sss.fintdByProductKey("");
 			session.setAttribute("Username", user.getName());
 			session.setAttribute("Role", user.getRole());
+			session.setAttribute("list", list);
 			
 			return "home";
 		} else {
@@ -60,9 +62,7 @@ public class shopController {
 		}
 	@RequestMapping("/search")
 	public String serch(@RequestParam("key") String a,@RequestParam("category") String b,@RequestParam("area") String c,Model model) {
-System.out.println(a);
-System.out.println(b);
-System.out.println(c);
+
 		List<Shop> list=new ArrayList<>();
 		if(a.equals("")&&b.equals("ジャンル")) {
 			list = sss.fintdByProductKey(c);
@@ -81,4 +81,57 @@ System.out.println(c);
 		session.setAttribute("list", list);
 		return "home";
 	}
+	@RequestMapping("/shop")
+	public String shop(@RequestParam("name") String a, Model model) {
+		Shop s = sss.fintdByname(a);
+		session.setAttribute("shop", s);
+		return "shop";
+	}
+	
+	@RequestMapping("/edit")
+	public String edit1(Model model) {
+		Shop a = (Shop) session.getAttribute("shop");
+		sss.delete(a.getTelnumber());
+		String msg = "消去が完了しました";
+		model.addAttribute("deletemsg", msg);
+		
+		List<Shop> list = new ArrayList<>();
+		list = sss.fintdByProductKey("");
+		session.setAttribute("list", list);
+		return "home";
+	}
+	@RequestMapping("/back")
+	public String back(Model model) {
+		List<Shop> list = new ArrayList<>();
+		list = sss.fintdByProductKey("");
+		session.setAttribute("list", list);
+		return "home";
+	}
+	@RequestMapping("/in")
+	public String in(@ModelAttribute("insert") shopForm form, Model model) {
+		
+		return "insert";
+	}
+	
+	@RequestMapping("/insert")
+	public String insert(@ModelAttribute("insert") shopForm form, Model model) {
+		try {
+		String name= form.getShopName();
+		int area = form.getAreaid();
+		int cate = form.getCategoryid();
+		String tel = form.getTelnumber();
+		String des = form.getDescription();
+		
+		sss.insert(name,area,cate,tel,des);
+		String msg = "登録が完了しました";
+		model.addAttribute("msg", msg);
+		return "insert";
+	} catch (Exception e) {
+		String msg = "店舗名が重複しました";
+		model.addAttribute("msg", msg);
+		return "insert";
+	}
+
+	}
+	
 }

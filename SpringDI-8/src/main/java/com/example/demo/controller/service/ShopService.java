@@ -21,4 +21,14 @@ public class ShopService implements ShopServices{
         }
         return null;
 	}
+	public Shop fintdByname(String name) {
+		return dao.fintdByname(name);
+	}
+	public void delete(String tel) {
+		dao.delete(tel);
+	}
+	public void insert(String name,int area,int cate,String tel,String des) {
+		dao.insert(name,area,cate,tel,des);
+	}
+	
 }
