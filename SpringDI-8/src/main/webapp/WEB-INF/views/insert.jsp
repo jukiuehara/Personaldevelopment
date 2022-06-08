@@ -12,9 +12,9 @@
 <body>
 
 	<div class="header">
-		<h1 class="site_logo">
+		<h2 >
 			<a href="menu.html">店舗登録</a>
-		</h1>
+		</h2>
 		<div class="user">
 			<p class="user_name">${User.getName()}</p>
 			<a href="/index" class="button">ログアウト</a>

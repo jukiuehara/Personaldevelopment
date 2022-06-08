@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.controller.entity.Shop;
 import com.example.demo.controller.entity.User;
 import com.example.demo.controller.form.loginForm;
+import com.example.demo.controller.form.reserveForm;
 import com.example.demo.controller.form.shopForm;
+import com.example.demo.controller.service.ReserveServices;
 import com.example.demo.controller.service.ShopServices;
 import com.example.demo.controller.service.UserServices;
 
@@ -32,6 +34,8 @@ public class shopController {
 	private UserServices uss;
 	@Autowired
 	private ShopServices sss;
+	@Autowired
+	private ReserveServices rss;
 
 	@RequestMapping("/index")
 	public String index(@ModelAttribute("shop") loginForm from, Model model) {
@@ -114,7 +118,10 @@ public class shopController {
 	}
 	
 	@RequestMapping("/insert")
-	public String insert(@ModelAttribute("insert") shopForm form, Model model) {
+	public String insert(@Validated @ModelAttribute("insert") shopForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "insert";
+		}
 		try {
 		String name= form.getShopName();
 		int area = form.getAreaid();
@@ -133,5 +140,26 @@ public class shopController {
 	}
 
 	}
+
+	@RequestMapping("/yoyaku")
+	public String calendar(@Validated @ModelAttribute("yoyaku") reserveForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "yoyaku";
+		}
+		
+		Shop shop = (Shop) session.getAttribute("shop");
 	
+		System.out.println(shop.getShopName()+form.getrName()+form.getNumber()+form.getDate()+form.getTimes());
+
+		String rName = form.getrName();
+		String number = form.getNumber();
+		String date = form.getDate();
+		String times = form.getTimes();
+
+		
+		rss.insert(shop.getShopName(), rName, number, date, times);
+		
+
+		return "end";
+	}
 }

@@ -13,17 +13,14 @@
 <body>
 
 	<div class="header">
-		<h2>
-			${shop.getShopName() }
-		</h2>
+		<h2>${shop.getShopName() }</h2>
 		<h3>電話番号：${shop.getTelnumber()}</h3>
 		<div class="user">
 			<p class="user_name">${User.getName()}</p>
 
+
 			<input type="button" onclick="openModal()" value="店舗削除"
-				class="basic_btn"> <input type="button"
-				onclick="location.href='in'" value="店舗登録" class="basic_btn">
-			<a href="/index" class="button">ログアウト</a>
+				class="basic_btn"> <a href="/index" class="button">ログアウト</a>
 		</div>
 	</div>
 
@@ -34,6 +31,11 @@
 		<div class="form_body">
 			<div class="img_block">
 				<img src="./images/loginlogo.png" class="product_img"><br>
+
+				<input type="button" onclick="location.href='yoyaku'" value="予約"
+					class="cancel_btn">
+
+
 			</div>
 			<form>
 
@@ -42,18 +44,19 @@
 
 				<p>${shop.getDescription()}</p>
 
-
-
-				<div>
-					<div class="btns">
-						<input type="button" onclick="location.href='back'" value="戻る"
-							class="cancel_btn">
-					</div>
-
-
-
+				<div></div>
+				<div class="btns">
+					<input type="button" onclick="location.href='back'" value="戻る"
+						class="cancel_btn">
 				</div>
 			</form>
+
+
+
+
+
+
+
 		</div>
 	</div>
 	<form:form action="/edit">

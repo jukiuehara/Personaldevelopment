@@ -17,6 +17,8 @@
     
    </div>
    <div class="head">
+   <input type="button"
+				onclick="location.href='in'" value="店舗登録" class="basic_btn">
     <a href="/index" class="button">ログアウト</a>
     <p class="name">${Username}さんこんにちは</p>
     <h2 class="">ぐるなび沖縄版</h2>
@@ -29,7 +31,7 @@
     <form method="get" action="/search">
         <div class="home_search">
           <input type="text" size="25" placeholder="店名" name="key">
-          <input type="submit" value="&#xf002" >
+          <input type="submit" value="検索" >
         
             <div class="order">
     
@@ -77,6 +79,10 @@
   <tr>
   <th></th>
        <td><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗詳細</a></td>
+  </tr>
+  <tr>
+  
+       <td></td>
   </tr>
   
 </table>

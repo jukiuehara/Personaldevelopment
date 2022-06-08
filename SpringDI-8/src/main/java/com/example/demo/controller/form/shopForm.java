@@ -18,6 +18,7 @@ public class shopForm{
 	
 	@NotBlank(message="店舗紹介文が未入力です")
 	private String description;
+	
 	public int getId() {
 		return id;
 	}
