@@ -13,9 +13,9 @@
     <h1 class="site_logo">  </h1>
   </div>
   <div class="center">
-    <p>
+    <h3>
       予約が完了しました。<br> ※5秒後にTOP画面に遷移します。
-    </p>
+    </h3>
   </div>
 </body>
 </html>

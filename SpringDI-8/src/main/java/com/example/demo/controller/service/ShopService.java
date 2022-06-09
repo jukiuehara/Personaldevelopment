@@ -27,8 +27,11 @@ public class ShopService implements ShopServices{
 	public void delete(String tel) {
 		dao.delete(tel);
 	}
-	public void insert(String name,int area,int cate,String tel,String des) {
-		dao.insert(name,area,cate,tel,des);
+	public void insert(String name,int area,int cate,String tel,String pass,String des) {
+		dao.insert(name,area,cate,tel,pass,des);
+	}
+	public Shop shoplogin(String pass,String name) {
+		return dao.shoplogin(pass,name);
 	}
 	
 }

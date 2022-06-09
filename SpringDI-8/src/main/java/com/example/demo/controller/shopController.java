@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.controller.entity.Reserve;
 import com.example.demo.controller.entity.Shop;
 import com.example.demo.controller.entity.User;
 import com.example.demo.controller.form.loginForm;
@@ -91,6 +92,20 @@ public class shopController {
 		session.setAttribute("shop", s);
 		return "shop";
 	}
+	@RequestMapping("/shop2")
+	public String shop(Model model) {
+
+		return "shop";
+	}
+	@RequestMapping("/reservationtable")
+	public String table( Model model) {
+		Shop shop = (Shop) session.getAttribute("shop");
+		
+		List<Reserve> list = new ArrayList<>();
+	list = rss.fintdByShopName(shop.getShopName());
+		session.setAttribute("table", list);
+		return "reservationtable";
+	}
 	
 	@RequestMapping("/edit")
 	public String edit1(Model model) {
@@ -111,12 +126,29 @@ public class shopController {
 		session.setAttribute("list", list);
 		return "home";
 	}
+
 	@RequestMapping("/in")
 	public String in(@ModelAttribute("insert") shopForm form, Model model) {
 		
 		return "insert";
 	}
-	
+	@RequestMapping("/reserve")
+	public String reserve(@RequestParam("pass") String a,Model model) {
+		Shop shopname = (Shop) session.getAttribute("shop");
+		Shop shoplogin = sss.shoplogin(a,shopname.getShopName());
+		if (shoplogin != null) {
+			return "reserve";
+		} else {
+
+			return "shop";
+		}
+	}
+		@RequestMapping("/reserveback")
+		public String reserve2(Model model) {
+
+				return "reserve";
+
+	}
 	@RequestMapping("/insert")
 	public String insert(@Validated @ModelAttribute("insert") shopForm form, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -127,9 +159,10 @@ public class shopController {
 		int area = form.getAreaid();
 		int cate = form.getCategoryid();
 		String tel = form.getTelnumber();
+		String pass = form.getPass();
 		String des = form.getDescription();
 		
-		sss.insert(name,area,cate,tel,des);
+		sss.insert(name,area,cate,tel,pass,des);
 		String msg = "登録が完了しました";
 		model.addAttribute("msg", msg);
 		return "insert";

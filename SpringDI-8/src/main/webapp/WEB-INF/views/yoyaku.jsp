@@ -11,9 +11,9 @@
 </head>
 <body>
 	<div class="header">
-		<h2 >
-			<a href="menu.html">予約</a>
-		</h2>
+		<h1>
+			予約フォーム
+		</h1>
 		<div class="user">
 			<p class="user_name">${User.getName()}</p>
 			<a href="/index" class="button">ログアウト</a>
@@ -43,7 +43,7 @@
 					<div>
 		<label class="required">人数</label>
 			<form:input type="number" path="number" class="base-text" value="1"/>人
-		<form:errors path="number" cssStyle="color: red" />
+			<form:errors path="number" cssStyle="color: red" />
 					</div>
 					<div>
 		<form:input type="date" path="date" /><form:errors path="date" cssStyle="color: red" />
@@ -53,8 +53,8 @@
 		<form:input type="time" path="times" value="9:00" min="10:00" max="22:00" /><form:errors path="times" cssStyle="color: red" />
 							<div class="btns">
 							</div>
-					<button type="button" onclick="openModal()" class="basic_btn">予約</button>
-					<input type="button" onclick="location.href='back'" value="戻る"
+					<button type="button" onclick="openModal()" class="yoyaku_btn">予約</button>
+					<input type="button" onclick="location.href='shop2'" value="戻る"
 						class="cancel_btn">
 				</div>
 

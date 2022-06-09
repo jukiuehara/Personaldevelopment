@@ -1,6 +1,30 @@
 @charset "UTF-8";
 
+.button {
+  display       : inline-block;
+  border-radius : 5%;          
+  font-size     : 18pt;        
+  text-align    : center;      
+  cursor        : pointer;    
+  padding       : 12px 12px; 
+  background    : #000066;    
+  color         : #ffffff;    
+  line-height   : 1em;     
+  transition    : .3s;        
+  box-shadow    : 6px 6px 3px #666666; 
+  border        : 2px solid #000066; 
+  float: right;
+  margin-top: 10px;
+  margin-bottom:20px;
+  margin-right: 0px;
+  margin-left: 15px;
+}
 
+.button:hover {
+  box-shadow    : none;       
+  color         : #000066;   
+  background    : #ffffff;    
+}
 fieldset {
   border: none;
 }
@@ -77,14 +101,15 @@ table {
   width: 80%;
   /* border-collapse: collapse;
   border-spacing: 0; */
-  border: none;
+border: solid;
+border-color:#80ffff;
   table-layout: fixed;
 }
 
 table th {
-  background:#68a9eb;
+  background:#80ffff;
 	font-weight: bold;
-	color:#fff;
+	color:#000000;
 }
 
 table th,table td{
@@ -93,7 +118,7 @@ table th,table td{
 }
 
 table tr:nth-child(odd){
-  background:#F7EFE3;
+  background:rgb(213, 255, 255);
 }
 
 .detail_btn {
@@ -178,6 +203,7 @@ hr {
   cursor: pointer;
   color: white;
   margin: 10px;
+  margin-top:20px;
 }
 
 .basic_btn:hover {
@@ -202,7 +228,26 @@ hr {
   cursor: pointer;
   margin: 10px;
 }
+.yoyaku_btn{
+	  width: auto;
+  height: auto;
+  border: solid 1px rgb(207, 207, 207);
+  border-radius: 5px;
+  background-color:#ff8040;
+  padding: auto;
+  line-height: 2;
+  padding: 4px 10px 4px 10px;
+  cursor: pointer;
+  margin: 10px;  
+  color         : #ffffff;    
+}
 
+
+.yoyaku_btn:hover {
+  box-shadow    : none;       
+  color         : #000066;   
+  background    : #ffffff;   
+}
 .cancel_btn:hover {
   background-color:rgb(216, 216, 216);
 }
@@ -414,3 +459,36 @@ h1 a {
   color         : #000066;   
   background    : #ffffff;    
 }
+h1{
+	margin-left:50px;
+}
+.my{
+	margin-left:500px;
+	margin-top:100px;
+}
+.button3 {
+  display       : inline-block;
+  border-radius : 5%;          
+  font-size     : 18pt;        
+  text-align    : center;      
+  cursor        : pointer;    
+  padding       : 12px 12px; 
+  background    : #000066;    
+  color         : #ffffff;    
+  line-height   : 1em;     
+  transition    : .3s;        
+  box-shadow    : 6px 6px 3px #666666; 
+  border        : 2px solid #000066; 
+  float: right;
+  margin-top: 10px;
+  margin-bottom:20px;
+  margin-right: 0px;
+  margin-left: 15px;
+}
+
+.button3:hover {
+  box-shadow    : none;       
+  color         : #000066;   
+  background    : #ffffff;    
+}
+

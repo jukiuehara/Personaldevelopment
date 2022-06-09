@@ -46,6 +46,11 @@
 						<form:input type="text" path="telnumber" class="base-text" />
 						<form:errors path="telnumber" cssStyle="color: red" />
 					</div>
+					<div>
+						<label class="required">店舗パスワード</label>
+						<form:input type="text" path="pass" class="base-text" />
+						<form:errors path="pass" cssStyle="color: red" />
+					</div>
 					<div class="select_block">
 						<label class="required">ジャンル</label>
 						<form:select path="categoryid" class="base-text">

@@ -16,9 +16,18 @@ public class shopForm{
 	@NotBlank(message="電話番号が未入力です")
 	private String telnumber;
 	
+	@NotBlank(message="パスワードが未入力です")
+	private String pass;
+	
 	@NotBlank(message="店舗紹介文が未入力です")
 	private String description;
 	
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}	
 	public int getId() {
 		return id;
 	}

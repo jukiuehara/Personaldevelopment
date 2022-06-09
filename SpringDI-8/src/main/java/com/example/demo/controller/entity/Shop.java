@@ -6,18 +6,28 @@ public class Shop {
 	private String category;
 	private String area;
 	private String telnumber;
+	private String password;
 	private String description;
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 	public Shop() {
 		
 	}
-	public Shop(int id , String shopName, String category,String area,String telnumber,String description) {
+	public Shop(int id , String shopName, String category,String area,String telnumber,String password,String description) {
 		this.id =id;
 		this.shopName = shopName;
 		this.category = category;
 		this.area =area;
 		this.telnumber = telnumber;
 		this.description = description;
+		this.password = password;
 	}
 	public int getId() {
 		return id;

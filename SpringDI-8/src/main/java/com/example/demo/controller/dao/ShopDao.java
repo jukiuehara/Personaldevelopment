@@ -18,9 +18,10 @@ public class ShopDao implements ShopDaos {
     private NamedParameterJdbcTemplate  jdbcTemplate;
 
 private static final String SELECT_SQL ="select shop_name,telnumber,description,category,area from shop join category on shop.categoryid = category.categoryid join area on shop.areaid = area.areaid where shop_name LIKE :keyname or category like :cate or area like :areaarea";
+private static final String SQL_SELECT_PASS ="select * from shop where shop_name =:name and password = :pass";
 private static final String SELECT_NAME_SQL ="select shop_name,telnumber,description,category,area from shop join category on shop.categoryid = category.categoryid join area on shop.areaid = area.areaid where shop_name LIKE :keyname";
 private static final String SQL_DELETE ="delete from shop where telnumber = :tel;";
-private static final String SQL_INSERT ="insert into shop(shop_name,areaid,categoryid,telnumber,description)values(:name,:area,:cate,:tel,:des)";
+private static final String SQL_INSERT ="insert into shop(shop_name,areaid,categoryid,telnumber,password,description)values(:name,:area,:cate,:tel,:pass,:des)";
 
 public List<Shop> fintdByProductKey(String name) {
 	List<Shop> shop = new ArrayList<>();
@@ -50,17 +51,29 @@ public void delete(String tel) {
 	param.addValue("tel", tel);
 	jdbcTemplate.update(sql, param);
 }
-public void insert(String name,int area,int cate,String tel,String des) {
+public void insert(String name,int area,int cate,String tel,String pass,String des) {
 	String sql = SQL_INSERT;
 	MapSqlParameterSource param = new MapSqlParameterSource();
 	param.addValue("name",name);
 	param.addValue("area",area);
 	param.addValue("cate",cate);
 	param.addValue("tel",tel);
+	param.addValue("pass",pass);	
 	param.addValue("des",des);
 	jdbcTemplate.update(sql, param);
 }
+public Shop shoplogin(String pass,String name) {
+	String sql = SQL_SELECT_PASS;
+	
+    MapSqlParameterSource param = new MapSqlParameterSource();
+    param.addValue("name", name);
+    param.addValue("pass", pass);
 
+    List<Shop> list =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Shop>(Shop.class));
+
+    return list.isEmpty() ? null : list.get(0);
+
+}
 
 
 }

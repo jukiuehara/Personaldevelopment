@@ -17,8 +17,7 @@
     
    </div>
    <div class="head">
-   <input type="button"
-				onclick="location.href='in'" value="店舗登録" class="basic_btn">
+   <input type="button"onclick="location.href='in'" value="店舗登録" class="basic_btn">
     <a href="/index" class="button">ログアウト</a>
     <p class="name">${Username}さんこんにちは</p>
     <h2 class="">ぐるなび沖縄版</h2>
@@ -57,9 +56,9 @@
 </div>
 
    <c:forEach var="shop" items="${list}">
-
         <table>
-        
+
+
   <tr>
     <th>会社名</th>
     <td>${shop.getShopName()} </td>
@@ -76,9 +75,8 @@
     <th>電話番号</th>
     <td>${shop.getTelnumber()}</td>
   </tr>
-  <tr>
-  <th></th>
-       <td><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗詳細</a></td>
+          <tr>
+       <td colspan="2"><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗詳細</a></td>
   </tr>
   <tr>
   

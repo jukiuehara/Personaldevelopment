@@ -13,14 +13,20 @@
 <body>
 
 	<div class="header">
-		<h2>${shop.getShopName() }</h2>
+		<h1>${shop.getShopName() }</h1>
+		<br>
 		<h3>電話番号：${shop.getTelnumber()}</h3>
 		<div class="user">
 			<p class="user_name">${User.getName()}</p>
 
-
-			<input type="button" onclick="openModal()" value="店舗削除"
-				class="basic_btn"> <a href="/index" class="button">ログアウト</a>
+						<p>${msg}</p>
+		<form method="get" action="/reserve">
+        <div class="home_search">
+          <input type="text" size="25" placeholder="店舗パスワード" name="pass">
+          <input type="submit" value="店舗ページ"class="basic_btn" >
+          </div>
+           </form>  
+			 <a href="/index" class="button">ログアウト</a>
 		</div>
 	</div>
 
@@ -32,8 +38,7 @@
 			<div class="img_block">
 				<img src="./images/loginlogo.png" class="product_img"><br>
 
-				<input type="button" onclick="location.href='yoyaku'" value="予約"
-					class="cancel_btn">
+				
 
 
 			</div>
@@ -46,29 +51,18 @@
 
 				<div></div>
 				<div class="btns">
+				<input type="button" onclick="location.href='yoyaku'" value="予約"
+					class="yoyaku_btn">
 					<input type="button" onclick="location.href='back'" value="戻る"
 						class="cancel_btn">
 				</div>
 			</form>
 
 
-
-
-
-
-
 		</div>
 	</div>
-	<form:form action="/edit">
-		<div id="modal">
-			<p class="modal_message">削除しますか？</p>
-			<div class="btns">
-				<button type="submit" class="basic_btn">削除</button>
-				<button type="button" onclick="closeModal()" class="cancel_btn">キャンセル</button>
-			</div>
-		</div>
-	</form:form>
+
 	<div id="fadeLayer"></div>
+	<script src="./js/commons.js"></script>
 </body>
 </html>
-<script src="./js/commons.js"></script>

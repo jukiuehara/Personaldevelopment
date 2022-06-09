@@ -40,7 +40,7 @@ padding-top: 10px;
 
 }
 .home_body{
-  background-color: rgb(250, 242, 232);
+  background-color:#ffffff;
 }
 .head{
  background-color:rgb(213, 255, 255) ;
@@ -109,27 +109,23 @@ padding-top: 10px;
   font-size:20px
 }
 table{
+	
+ box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
 	background    : #ffffff;   
-	  width: 100%;
+	  width: 50%;
   border-collapse:separate;
   border-spacing: 0;
-}
-table th:first-child{
-  border-radius: 5px 0 0 0;
+  margin:auto;
 }
 
-table th:last-child{
-  border-radius: 0 5px 0 0;
-  border-right: 1px solid #3c6690;
-}
 
 table th{
   text-align: center;
-  color:white;
-  background: linear-gradient(#829ebc,#225588);
+  color:black;
+  background: linear-gradient(#ffffff,#ffffff);
   border-left: 1px solid #3c6690;
-  border-top: 1px solid #3c6690;
-  border-bottom: 1px solid #3c6690;
+
+
   box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
   width: 25%;
   padding: 10px 0;
@@ -138,9 +134,7 @@ table th{
 table td{
   text-align: center;
   border-left: 1px solid #a8b7c5;
-  border-bottom: 1px solid #a8b7c5;
-  border-top:none;
-  box-shadow: 0px -3px 5px 1px #eee inset;
+
   width: 25%;
   padding: 10px 0;
 }
@@ -164,7 +158,9 @@ table tr:last-child td:first-child {
   padding: 5px 10px 5px 10px;
   cursor: pointer;
   color: white;
-  margin: 10px;
+  margin: 20px;
+  float: right;
+  margin-top:45px;
 }
 
 
