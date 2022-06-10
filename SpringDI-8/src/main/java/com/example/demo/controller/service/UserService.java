@@ -16,4 +16,7 @@ public class UserService implements UserServices{
         	  return dao.fintdByUserIdPass(id,pass);
         	  
 }
+  	public void insert(String id,String pass,String name) {
+  		 dao.insert(id,pass,name);
+  	}
 }

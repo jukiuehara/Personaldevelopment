@@ -16,7 +16,7 @@
 		</h1>
 		<div class="user">
 			<p class="user_name">${User.getName()}</p>
-			<a href="/index" class="button">ログアウト</a>
+			<a href="/logout" class="button">ログアウト</a>
 		</div>
 	</div>
 

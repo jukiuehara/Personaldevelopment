@@ -10,4 +10,6 @@ public interface ShopServices {
 	public void delete(String tel);
 	public Shop shoplogin(String pass,String name);
 	public void insert(String name,int area,int cate,String tel,String pass,String des);
+	public void update(String name,int area,int cate,String tel,String pass,String des,String shopname);
+	
 }

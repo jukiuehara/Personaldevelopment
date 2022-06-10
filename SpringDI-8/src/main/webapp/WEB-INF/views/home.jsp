@@ -18,7 +18,7 @@
    </div>
    <div class="head">
    <input type="button"onclick="location.href='in'" value="店舗登録" class="basic_btn">
-    <a href="/index" class="button">ログアウト</a>
+    <a href="/logout" class="button">ログアウト</a>
     <p class="name">${Username}さんこんにちは</p>
     <h2 class="">ぐるなび沖縄版</h2>
     
@@ -54,35 +54,32 @@
            </form>   
   </div>
 </div>
-
+<hr>
    <c:forEach var="shop" items="${list}">
         <table>
 
 
   <tr>
     <th>会社名</th>
-    <td>${shop.getShopName()} </td>
+    <td>${fn:escapeXml(shop.getShopName())}</td>
  </tr>
   <tr>
     <th>ジャンル</th>
-    <td>${shop.getCategory()}</td>
+    <td>${fn:escapeXml(shop.getCategory())}</td>
   </tr>
   <tr>
     <th>エリア</th>
-    <td>${shop.getArea()}</td>
+    <td>${fn:escapeXml(shop.getArea())}</td>
   </tr>
   <tr>
     <th>電話番号</th>
-    <td>${shop.getTelnumber()}</td>
+    <td>${fn:escapeXml(shop.getTelnumber())}</td>
   </tr>
           <tr>
-       <td colspan="2"><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗詳細</a></td>
+       <td colspan="2" class="syousai"><a class="button2" href="/shop?name=${shop.getShopName()} ">店舗ページ</a><p>      </p></td>
+       
   </tr>
-  <tr>
-  
-       <td></td>
-  </tr>
-  
+
 </table>
 
       </c:forEach>

@@ -9,6 +9,13 @@
 <meta charset="UTF-8">
 <title>店舗</title>
 <link href="css/commons.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+  integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+  crossorigin="anonymous"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
 
@@ -26,7 +33,7 @@
           <input type="submit" value="店舗ページ"class="basic_btn" >
           </div>
            </form>  
-			 <a href="/index" class="button">ログアウト</a>
+			 <a href="/logout" class="button">ログアウト</a>
 		</div>
 	</div>
 
@@ -36,7 +43,35 @@
 	<div class="update">
 		<div class="form_body">
 			<div class="img_block">
-				<img src="./images/loginlogo.png" class="product_img"><br>
+<div style="width:400px">
+  <canvas id="mychart"></canvas>
+</div>
+<div class="gurafu">
+<p> "" </p>
+<p>  ""</p>
+<p>  "" </p>
+<p>""  </p>
+</div>
+<script>
+var ctx = document.getElementById('mychart');
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['9時', '10時', '11時', '12時', '13時', '14時', '15時','16時','17時','18時','19時','20時','21時','22時'],
+    datasets: [{
+      label: '混み具合',
+      data: [${time.get(0).getCoalesce()},${time.get(1).getCoalesce()},${time.get(2).getCoalesce()},${time.get(3).getCoalesce()},${time.get(4).getCoalesce()},${time.get(5).getCoalesce()},${time.get(6).getCoalesce()},${time.get(7).getCoalesce()},${time.get(8).getCoalesce()},${time.get(9).getCoalesce()},${time.get(10).getCoalesce()},${time.get(11).getCoalesce()},${time.get(12).getCoalesce()},${time.get(13).getCoalesce()}],
+      borderColor: '#f88',
+    }],
+  },
+  options: {
+    y: {
+      min: 0,
+      max: 10,
+    },
+  },
+});
+</script>
 
 				
 
@@ -44,14 +79,14 @@
 			</div>
 			<form>
 
-				<h3>エリア：${shop.getArea() }</h3>
-				<h3>ジャンル:${shop.getCategory() }</h3>
+				<h3>エリア：${fn:escapeXml(shop.getArea())}</h3>
+				<h3>ジャンル:${fn:escapeXml(shop.getCategory())}</h3>
 
-				<p>${shop.getDescription()}</p>
+				<p>${fn:escapeXml(shop.getDescription())}</p>
 
 				<div></div>
 				<div class="btns">
-				<input type="button" onclick="location.href='yoyaku'" value="予約"
+				<input type="button" onclick="location.href='yoyakuin'" value="予約"
 					class="yoyaku_btn">
 					<input type="button" onclick="location.href='back'" value="戻る"
 						class="cancel_btn">

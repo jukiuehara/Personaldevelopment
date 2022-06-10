@@ -30,7 +30,9 @@
         </div>
       </fieldset>
       <button class="logout_btn" type="submit">ログイン</button>
+      <input type="button"onclick="location.href='new'" value="新規登録" class="logout_btn">
     </form:form>
+    
   </div>
 </body>
 </html>

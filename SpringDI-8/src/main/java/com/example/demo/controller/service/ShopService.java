@@ -33,5 +33,8 @@ public class ShopService implements ShopServices{
 	public Shop shoplogin(String pass,String name) {
 		return dao.shoplogin(pass,name);
 	}
+	public void update(String name,int area,int cate,String tel,String pass,String des,String shopname) {
+		dao.update(name,area,cate,tel,pass,des,shopname);
+	}
 	
 }

@@ -22,6 +22,7 @@ private static final String SQL_SELECT_PASS ="select * from shop where shop_name
 private static final String SELECT_NAME_SQL ="select shop_name,telnumber,description,category,area from shop join category on shop.categoryid = category.categoryid join area on shop.areaid = area.areaid where shop_name LIKE :keyname";
 private static final String SQL_DELETE ="delete from shop where telnumber = :tel;";
 private static final String SQL_INSERT ="insert into shop(shop_name,areaid,categoryid,telnumber,password,description)values(:name,:area,:cate,:tel,:pass,:des)";
+private static final String SQL_UPDATE ="UPDATE SHOP SET shop_name = :name,areaid = :area,categoryid =:cate,telnumber = :tel,password = pass,description = :des where shop_name = :shopname";
 
 public List<Shop> fintdByProductKey(String name) {
 	List<Shop> shop = new ArrayList<>();
@@ -36,6 +37,7 @@ public List<Shop> fintdByProductKey(String name) {
     
     return shop;
 }
+
 public Shop fintdByname(String name) {
 	List<Shop> shop = new ArrayList<>();
 	String sql = SELECT_NAME_SQL;
@@ -45,12 +47,14 @@ public Shop fintdByname(String name) {
     
     return shop.isEmpty() ? null : shop.get(0);
 }
+
 public void delete(String tel) {
 	String sql = SQL_DELETE;
 	MapSqlParameterSource param = new MapSqlParameterSource();
 	param.addValue("tel", tel);
 	jdbcTemplate.update(sql, param);
 }
+
 public void insert(String name,int area,int cate,String tel,String pass,String des) {
 	String sql = SQL_INSERT;
 	MapSqlParameterSource param = new MapSqlParameterSource();
@@ -62,15 +66,26 @@ public void insert(String name,int area,int cate,String tel,String pass,String d
 	param.addValue("des",des);
 	jdbcTemplate.update(sql, param);
 }
+
+public void update(String name,int area,int cate,String tel,String pass,String des,String shopname){
+	String sql = SQL_UPDATE;
+	MapSqlParameterSource param = new MapSqlParameterSource();
+	param.addValue("name",name);
+	param.addValue("area",area);
+	param.addValue("cate",cate);
+	param.addValue("tel",tel);
+	param.addValue("pass",pass);	
+	param.addValue("des",des);
+	param.addValue("shopname",shopname);
+	jdbcTemplate.update(sql, param);
+}
+
 public Shop shoplogin(String pass,String name) {
 	String sql = SQL_SELECT_PASS;
-	
     MapSqlParameterSource param = new MapSqlParameterSource();
     param.addValue("name", name);
     param.addValue("pass", pass);
-
     List<Shop> list =  jdbcTemplate.query(sql,param, new BeanPropertyRowMapper<Shop>(Shop.class));
-
     return list.isEmpty() ? null : list.get(0);
 
 }

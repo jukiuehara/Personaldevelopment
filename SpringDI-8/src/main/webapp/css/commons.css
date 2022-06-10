@@ -98,16 +98,16 @@ body {
 
 table {
   margin: auto;
-  width: 80%;
+  width: 60%;
   /* border-collapse: collapse;
   border-spacing: 0; */
 border: solid;
-border-color:#80ffff;
+border-color:rgb(247, 238, 181);
   table-layout: fixed;
 }
 
 table th {
-  background:#80ffff;
+  background:rgb(247, 238, 181);
 	font-weight: bold;
 	color:#000000;
 }
@@ -118,7 +118,7 @@ table th,table td{
 }
 
 table tr:nth-child(odd){
-  background:rgb(213, 255, 255);
+  background:rgb(253, 240, 215);
 }
 
 .detail_btn {
@@ -491,4 +491,8 @@ h1{
   color         : #000066;   
   background    : #ffffff;    
 }
+.gurafu{
+	margin-top:600px;
+}
+
 

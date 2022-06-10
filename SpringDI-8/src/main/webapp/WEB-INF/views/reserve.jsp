@@ -13,11 +13,12 @@
 <body>
 <h1>${shop.getShopName()}</h1><h1>マイページ</h1>
 
- <a href="/index" class="button3">ログアウト</a>
+ <a href="/logout" class="button3">ログアウト</a>
 
 
 <hr>
 <div class="my">
+<input type="button"onclick="location.href='up'" value="店舗更新" class="basic_btn">
 <input type="button" onclick="openModal()" value="店舗削除"class="basic_btn">
 <input type="button" onclick="location.href='reservationtable'" value="予約表"class="basic_btn">
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.controller.dao.ReserveDaos;
 import com.example.demo.controller.entity.Reserve;
+import com.example.demo.controller.entity.Time;
 
 @Service
 public class ReserveService implements ReserveServices{
@@ -20,5 +21,9 @@ public class ReserveService implements ReserveServices{
 	public List<Reserve> fintdByShopName(String name){
 		return dao.fintdByShopName(name);
 	}
+	public List<Time> timeGet(String name){
+		return dao.timeGet(name);
+	}
+	
 	
 }

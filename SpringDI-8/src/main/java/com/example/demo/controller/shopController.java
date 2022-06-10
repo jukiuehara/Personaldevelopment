@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.entity.Reserve;
 import com.example.demo.controller.entity.Shop;
+import com.example.demo.controller.entity.Time;
 import com.example.demo.controller.entity.User;
 import com.example.demo.controller.form.loginForm;
 import com.example.demo.controller.form.reserveForm;
@@ -42,13 +43,17 @@ public class shopController {
 	public String index(@ModelAttribute("shop") loginForm from, Model model) {
 		return "index";
 	}
+	@RequestMapping("/logout")
+	public String logout(@ModelAttribute("shop") loginForm from, Model model) {
+		return "logout";
+	}
 	@RequestMapping("/rogin")
 	public String rogin(@Validated @ModelAttribute("shop") loginForm form, BindingResult bindingResult,
 			Model model) {
+//		if (bindingResult.hasErrors()) {
+//			return "index";
+//		}
 
-		if (bindingResult.hasErrors()) {
-			return "index";
-		}
 		User user = uss.login(form.getId(), form.getPass());
 
 		if (user != null) {
@@ -63,8 +68,28 @@ public class shopController {
 			model.addAttribute("msg", "IDまたはパスワードが不正です");
 			return "index";
 		}
+	}
+	@RequestMapping("/new")
+	public String newin(@ModelAttribute("new") loginForm from, Model model) {
+		return "new";
+	}
+		@RequestMapping("/news")
+		public String news(@Validated @ModelAttribute("new") loginForm form, BindingResult bindingResult,
+				Model model) {
+			if (bindingResult.hasErrors()) {
+				return "new";
+			}
+			try {			
+				uss.insert(form.getId(), form.getPass(),form.getName());
+				return "start";
+			} catch (Exception e) {
+				String msg = "idが重複しました";
+				model.addAttribute("usermsg", msg);
+				return "new";
+			}
 		
 		}
+		
 	@RequestMapping("/search")
 	public String serch(@RequestParam("key") String a,@RequestParam("category") String b,@RequestParam("area") String c,Model model) {
 
@@ -89,6 +114,10 @@ public class shopController {
 	@RequestMapping("/shop")
 	public String shop(@RequestParam("name") String a, Model model) {
 		Shop s = sss.fintdByname(a);
+		List<Time> timelist = new ArrayList<>();
+		timelist = rss.timeGet(a);
+		
+		session.setAttribute("time", timelist);
 		session.setAttribute("shop", s);
 		return "shop";
 	}
@@ -132,6 +161,11 @@ public class shopController {
 		
 		return "insert";
 	}
+	@RequestMapping("/up")
+	public String up(@ModelAttribute("update") shopForm form, Model model) {
+		
+		return "update";
+	}
 	@RequestMapping("/reserve")
 	public String reserve(@RequestParam("pass") String a,Model model) {
 		Shop shopname = (Shop) session.getAttribute("shop");
@@ -145,9 +179,7 @@ public class shopController {
 	}
 		@RequestMapping("/reserveback")
 		public String reserve2(Model model) {
-
 				return "reserve";
-
 	}
 	@RequestMapping("/insert")
 	public String insert(@Validated @ModelAttribute("insert") shopForm form, BindingResult bindingResult, Model model) {
@@ -171,9 +203,27 @@ public class shopController {
 		model.addAttribute("msg", msg);
 		return "insert";
 	}
+	}
+	@RequestMapping("/update")
+	public String update(@Validated @ModelAttribute("update") shopForm form, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "insert";
+			}
+
+			String name= form.getShopName();
+			int area = form.getAreaid();
+			int cate = form.getCategoryid();
+			String tel = form.getTelnumber();
+			String pass = form.getPass();
+			String des = form.getDescription();
+			Shop shop = (Shop) session.getAttribute("shop");
+			sss.update(name,area,cate,tel,pass,des,shop.getShopName());
+			String msg = "登録が完了しました";
+			model.addAttribute("msg", msg);
+			return "update";
 
 	}
-
+	
 	@RequestMapping("/yoyaku")
 	public String calendar(@Validated @ModelAttribute("yoyaku") reserveForm form, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -188,11 +238,12 @@ public class shopController {
 		String number = form.getNumber();
 		String date = form.getDate();
 		String times = form.getTimes();
-
-		
 		rss.insert(shop.getShopName(), rName, number, date, times);
-		
-
 		return "end";
+	}
+	@RequestMapping("/yoyakuin")
+	public String yoyaku(@ModelAttribute("yoyaku") reserveForm form, Model model) {
+			return "yoyaku";
+
 	}
 }

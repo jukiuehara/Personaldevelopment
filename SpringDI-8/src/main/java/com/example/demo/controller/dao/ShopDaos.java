@@ -10,4 +10,5 @@ public interface ShopDaos {
 	public void delete(String tel);
 	public void insert(String name,int area,int cate,String tel,String pass,String des);
 	public Shop shoplogin(String pass,String name);
+	public void update(String name,int area,int cate,String tel,String pass,String des,String shopname);
 }

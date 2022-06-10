@@ -18,6 +18,9 @@ public class UserDao implements UserDaos{
 
 	
 	private static final String SQL_SELECT_ID_PASS = "select * from users where login_id = :id AND password = :pass";
+	private static final String SQL_INSERT = "insert into users\n"
+			+ "(login_id,password,name)\n"
+			+ "values(:id,:pass,:name)";
 
 	public User fintdByUserIdPass(String id, String pass) {
 	    	String sql = SQL_SELECT_ID_PASS;
@@ -30,5 +33,13 @@ public class UserDao implements UserDaos{
 
 		    return list.isEmpty() ? null : list.get(0);
 
+	}
+	public void insert(String id,String pass,String name) {
+		String sql = SQL_INSERT;
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("id",id);
+		param.addValue("pass",pass);
+		param.addValue("name",name);
+		jdbcTemplate.update(sql, param);
 	}
 }

@@ -8,6 +8,16 @@ public class loginForm{
 	
 	@NotBlank(message="パスワードが未入力です")
 	private String pass;
+	@NotBlank(message="名前が未入力です")
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getId() {
 		return id;
